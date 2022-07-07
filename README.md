@@ -3,7 +3,7 @@
 
 # sortee2022
 
-# [SORTEE Presentation 2021](https://www.sortee.org/events/)
+# [SORTEE Presentation 2022](https://www.sortee.org/events/)
 
 ## ResOps
 
