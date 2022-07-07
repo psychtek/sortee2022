@@ -1,0 +1,15 @@
+---
+title: "References"
+author: ""
+date: ""
+output: html_document
+bibliography: references/references.bib
+nocite: | 
+  @yenniDevelopingModernData2019, @whiteDevelopingAutomatedIterative2019,@peikertReproducibleDataAnalysis2019, @obelsAnalysisOpenData2020, @maer-mateiSkillNeedsEarly2019, @leipzigRoleMetadataReproducible2020, @koehlerlemanBetterTogetherElements2020, @ISI:000641472100002, @ISI:000537465000018, @ISI:000473184100005, @ISI:000454682100001, @hocquetEpistemicIssuesComputational2021, @Hatton2019137, @diazDevOpsPracticePreliminary2019, @debayserResearchOpsCaseDevOps2015, @beaulieu-jonesReproducibilityComputationalWorkflows2017, @wittmanGuideToolboxReplicability2020, @Culina:2018dn, @Murray2021, @Sequeira2021
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+

@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Aaron Willcox" />
+  <meta name="dcterms.date" content="2022-07-07" />
+  <title>DevOps to ResOps: A framework of community best practices and tools to guide computational reproducibility </title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="SORTEE2022_presentation_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="SORTEE2022_presentation_files/reveal.js-3.3.0.1/css/theme/black.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="SORTEE2022_presentation_files/header-attrs-2.14/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">DevOps to ResOps: A framework of community best
+practices and tools to guide computational reproducibility </h1>
+    <h2 class="author">Aaron Willcox</h2>
+    <h3 class="date">2022-07-07</h3>
+</section>
+
+<section id="research-data-code" class="slide level2">
+<h2>Research Data &amp; Code</h2>
+<ul>
+<li class="fragment">Source code generated each year grows by about 20%
+(L. Hatton &amp; M. van Genuchten, 2019).</li>
+</ul>
+<ul>
+<li class="fragment">93% of authors fail to respond or declined sharing
+data.</li>
+<li class="fragment">PLOS journals data sharing &lt;30%</li>
+<li class="fragment">Sharing policy increase: 15% in 2015 to 75% in 2020
+(Culina et al., 2018).</li>
+</ul>
+<ul>
+<li class="fragment">Data handling and processing often informally
+transmitted (Maer-Matei et al., 2019).</li>
+<li class="fragment">Lack of formal training for researchers (Koehler
+Leman et al., 2020).</li>
+</ul>
+<aside class="notes">
+<p><strong>Source code</strong> generated for research continues to grow
+each year by about 20% suggesting computational practices are an
+essential requirement to research. However, obtaining data and code is
+still alarming low!</p>
+<p>Complience rates through Open Access Journals are terrible; given
+Authors Data Availability Statements (DAS) <strong>93% of authors fail
+to respond</strong> or declined sharing data. Data sharing in PLOS
+journals is also less than 30%. <strong>Code-sharing policies</strong>
+are increasingly being adopted by journals, rising from 15% of ecology
+journals in 2015 to 75% in 2020. They are generally accompanied by
+guidelines, checklists and workflows that requires access to software
+artifacts, computational environment and workflow documentation.</p>
+<p>All require additional training, skills and knowledge on the part of
+the researcher to understand. Without <strong>formal training</strong>
+in code and workflow building, code development is typically an
+<strong>ad-hoc process</strong> that occurs over the course of a
+project’s life, with little forethought given to structuring a workflow
+for ensuring data preservation and reproducibility. So…</p>
+</aside>
+</section>
+<section id="computational-reproducibility" class="slide level2">
+<h2>Computational Reproducibility</h2>
+<blockquote>
+<p>The ability to produce equivalent analytical outcomes from the same
+data set using the same <strong>code</strong> and
+<strong>software</strong> as the original study (Fidler et al.,
+2017).</p>
+</blockquote>
+<ul>
+<li class="fragment">Why is there this gap between creation and sharing
+of knowledge?</li>
+</ul>
+<aside class="notes">
+<p>If Computational Reproducibility refers to the ability to produce
+equivalent analytical outcomes from the same data set, using the same
+code and software as the original study (Fidler et al., 2017) then
+<strong>why</strong> is there this gap between creation and sharing of
+knowledge?</p>
+</aside>
+</section>
+<section id="lets-begin" class="slide level2"
+data-background="figures/begin.gif">
+<h2 data-background="figures/begin.gif">Lets Begin!</h2>
+<aside class="notes">
+<p>Lets begin!</p>
+</aside>
+</section>
+<section id="sources-of-irreproducibility" class="slide level2">
+<h2>Sources of irreproducibility</h2>
+<ul>
+<li class="fragment">Workflows</li>
+<li class="fragment">Environment(Software dependencies)</li>
+<li class="fragment">Version Control System</li>
+<li class="fragment">Documentation (Leipzig et al., 2020)</li>
+</ul>
+<aside class="notes">
+<p>Common sources of irreproducibility are the lack of a
+<strong>workflow framework</strong>, including missing <strong>software
+dependencies</strong>, lack of a <strong>version control
+system</strong>, <strong>documentation</strong> (Leipzig et al.,
+2020).</p>
+</aside>
+</section>
+<section id="what-if-i-told-you" class="slide level2"
+data-background="figures/morph.jpg">
+<h2 data-background="figures/morph.jpg">What If I Told You…</h2>
+<aside class="notes">
+<p><strong>What if I told you</strong> that these are not separate
+components? What if I told you that researchers are using these
+<strong>practices and, differ</strong> very little to that of software
+engineering?</p>
+</aside>
+</section>
+<section id="practices-differ-very-little-to-software-engineers"
+class="slide level2" data-background="figures/morph.jpg">
+<h2 data-background="figures/morph.jpg">Practices differ very little to
+software engineers</h2>
+<aside class="notes">
+<p>What if I told you that researchers are using these <strong>practices
+and, differ</strong> very little to that of software engineering?</p>
+</aside>
+</section>
+<section id="devops" class="slide level2">
+<h2>DevOps</h2>
+<ul>
+<li class="fragment">Culture or working philosophy that fosters
+cross-functional team communication and collaboration.</li>
+<li class="fragment">Orients the <strong>way</strong> in which a team
+collaborates.</li>
+<li class="fragment">DevOps Centers on a culture of collaboration.</li>
+<li class="fragment">ResOps should* center on a culture of
+reproducibility.</li>
+</ul>
+<aside class="notes">
+<p>Irreproducibility and a lack of transparency can be overcome by
+borrowing a set of tools and practices from software engineering, called
+<strong>DevOps</strong>. DevOps is a <strong>culture</strong> or working
+philosophy that fosters cross-functional team communication and
+collaboration and, one of the primary benefits is that it does not
+require technical changes however, it <strong>orients</strong> the
+<strong>way</strong> in which a team collaborates and works.</p>
+<p>It <strong>centers</strong> on changing the culture through team
+dynamics to address the tasks between development and operation such as
+testing and continuous practices.</p>
+<p>Similar to the way DevOps is a culture in that it orients that way a
+team <strong>collaborates</strong> together, ResOps is a culture of
+<strong>reproducibility</strong> with best practices already used or
+gaining popularity in the scientific community.</p>
+</aside>
+</section>
+<section id="the-modern-scientist-role" class="slide level2">
+<h2>The Modern Scientist Role</h2>
+<ul>
+<li class="fragment">Developers</li>
+<li class="fragment">Testers</li>
+<li class="fragment">Programmers</li>
+<li class="fragment">Operators</li>
+<li class="fragment"><strong>One Role</strong></li>
+</ul>
+<aside class="notes">
+<p>The key difference is our roles as researchers are:
+<strong>developers</strong>, <strong>testing</strong>,
+<strong>programmers</strong> and <strong>operators</strong> is that,
+they are condensed into <strong>one role</strong></p>
+</aside>
+</section>
+<section id="we-create-software" class="slide level2"
+data-background="figures/kreese.gif">
+<h2 data-background="figures/kreese.gif">We Create Software</h2>
+<aside class="notes">
+<p><strong>We are creating software</strong>. Software as a goal should
+be an individual responsibility based on community convergence of best
+practices. Researchers should view code and software as a first class
+product and it should be treated in the same respect as a journal
+article. However attitudes differ between creating and sharing. Efforts
+to advance data as a first class research product <strong>can</strong>
+be measured through a the set of FAIR principles</p>
+</aside>
+</section>
+<section id="fair-principles" class="slide level2">
+<h2>FAIR Principles</h2>
+<ul>
+<li class="fragment">Findable</li>
+<li class="fragment">Accessible</li>
+<li class="fragment">Interoperable</li>
+<li class="fragment">Reusable</li>
+<li class="fragment"><strong>Not a technical solution or
+standard</strong></li>
+</ul>
+<aside class="notes">
+<p>However, FAIR principles are <strong>not a technical
+solution</strong> or standard and, there is some ambiguity on exactly
+what tools to implement and how to bring them all together into a
+workflow. Choices of FAIR implementation vary for different communities
+which are driven by communities of practice. They are <em>general
+enough</em> that they can be mapped to research software though. The
+convergence of best practices in the scientific community offer some
+direction into the technical tools and processes. Sources of
+irreproducibility provide some insights into technical solutions of such
+practices in the form of increased documentation, version control and
+environment. They also highlight key areas of skills training needed for
+modern research. Each of these as a component of DevOps can and has been
+implemented into scientific workflows.</p>
+</aside>
+</section>
+<section id="version-control" class="slide level2">
+<h2>Version Control</h2>
+<ul>
+<li
+class="fragment">Analysis_Report_2022_v001_final_FINAL_Submitted.pdf</li>
+</ul>
+<aside class="notes">
+A version control system is a way to syncronize and track changes in a
+project file. This includes what and by whom was changed and then, these
+are sent to a server so other contributors and collaborators can manage
+the same files. This essentially is the modern day version of avoiding
+this:
+</aside>
+</section>
+<section id="version-control-1" class="slide level2">
+<h2>Version Control</h2>
+<ul>
+<li class="fragment">Git command line and communication protocol</li>
+<li class="fragment">Github Web platform</li>
+<li class="fragment">Re-purposed for research</li>
+</ul>
+<aside class="notes">
+<p><strong>Git</strong> is the command line and communication protocol
+to enable the use of a version control system. <strong>Github</strong>
+is a web based platform that makes it easier to collaborate with git in
+that it can hold projects in multiple repositories and has additional
+project managing tools such as issue tracking and tools and, manage
+roles and comments. What this means for research is that by
+<strong>repurposing VCS</strong> for science we have the ability to
+provide a snapshot of contextual changes to files and have a rich data
+provenance for our scientific workflows. All the information about the
+origin, context, derivation, roles and histroy of some digital artifact
+is now recorded provanence.</p>
+</aside>
+</section>
+<section id="continuous-practices" class="slide level2">
+<h2>Continuous Practices</h2>
+<ul>
+<li class="fragment"><strong>Continuous Integration</strong>: Integrate
+code, automate, test</li>
+<li class="fragment"><strong>Continuous Delivery</strong>: testing,
+dynamic documents</li>
+<li class="fragment"><strong>Continuous Deployment</strong>: packaging
+and releases</li>
+</ul>
+<aside class="notes">
+<p>Continuous practices are dependent on the application. By definition
+<strong>continuous integration</strong> is the practice of integrating
+code changes constantly into the main branch and automate builds and
+testing. <strong>Continuous delivery</strong> should be adopted by
+dynamic documents and delivered to key stakeholders. <strong>Continuous
+deployment</strong> is more concerned with packaging an entire repo and
+deploying updated applications Continuous Practices.</p>
+</aside>
+</section>
+<section id="inrease-your-documentation-game" class="slide level2">
+<h2>Inrease Your Documentation Game</h2>
+<ul>
+<li class="fragment">Document text code and data</li>
+<li class="fragment">ReadME and Wikis</li>
+<li class="fragment">Annotating Code</li>
+<li class="fragment">YAMLs</li>
+<li class="fragment">Vignettes</li>
+</ul>
+<aside class="notes">
+<p>We need to Increase our <strong>Documentation</strong> Game The more
+documentation that is included the higher the degree of transparency and
+easier it its for researchers to understand and reproduce results
+(Gundersen, 2021). By adding <strong>VCS</strong>, dockerfiles and
+annotating code etc we are inheratnly increasing our documentation
+game.</p>
+</aside>
+</section>
+<section id="container-technology-docker" class="slide level2">
+<h2>Container Technology (Docker)</h2>
+<ul>
+<li class="fragment">Lock and isolate the environment</li>
+<li class="fragment">Manage Dependencies</li>
+<li class="fragment">Isolate Analysis from Local</li>
+<li class="fragment">Reusable and Portable</li>
+</ul>
+<aside class="notes">
+<p>One of the key issues around computational reproducibility is being
+able to run the results on the same software and obtaining the same
+results in order to verify the findings. The key obstacle is the
+<strong>software environment</strong> <strong>and</strong>/or documented
+instructions for creating the environment to make it work</p>
+<p>Ensuring scientific workflows can be reproduced through
+containerization like Docker allows us to record the version of its
+components and lock the environment into place such that when an
+workflow is run, we are providing the user with the same software
+dependencies. In essence we <strong>1)</strong> manage software
+dependencies; <strong>2)</strong> isolate analyses from the
+idiosyncrasies of local environment and <strong>3)</strong> virtualize
+entire analyses for portability and preservation</p>
+</aside>
+</section>
+<section id="dockerfile-example" class="slide level2">
+<h2>Dockerfile Example</h2>
+<div data-align="center">
+<p><img src="figures/dockerfile.png" style="background-color:transparent; border:0px; box-shadow:none;"></img></p>
+</div>
+<aside class="notes">
+<p>The <strong>Dockerfile</strong> contains the instructions for
+creating a system environemnt and has additional benefits for research
+in that it provides documentation in the form of metadata. Docker is
+essentailly a text file outlining the base system libraries and
+dependencies. Like this example from the repliCATs project.</p>
+</aside>
+</section>
+<section id="new-paradigm" class="slide level2">
+<h2>New Paradigm</h2>
+<ul>
+<li class="fragment"><strong>Scientific Workflows</strong></li>
+<li class="fragment">Version Control <strong>&lt;||&gt;</strong>
+Documented History</li>
+<li class="fragment">Docker <strong>&lt;||&gt;</strong>| System
+Environment &amp; Dependencies</li>
+<li class="fragment">CI/CD <strong>&lt;||&gt;</strong> Testing,
+delivery, Rapid feedback</li>
+<li class="fragment">“<em>Power in incorporating them into a scientific
+workflow greatly increases the ability for its reusability</em>”</li>
+</ul>
+<aside class="notes">
+<p><strong>Scientific workflows</strong> should implement <strong>VCS
+X3</strong>, container technology, automate and increase their
+documentation game (Xubo, n.d.). There should be a clear distinction
+between data, methods and outputs while capturing the relationship
+between them, including, specifying the computational environment that
+was used during the analysis.</p>
+<p>The components alone will address in part, issues of
+irreproducibility but the <strong>power</strong> in incorporating them
+into a scientific workflow greatly increases the ability for its
+reusability.</p>
+</aside>
+</section>
+<section id="resops" class="slide level2">
+<h2>ResOps</h2>
+<blockquote>
+<div class="line-block"> ResOps is an attempt to distinguish scientific
+software from DevOps. Emphasising communities of practice that enable
+the convergence of tools implemented in the scientific community, to
+enable computational reproducibility in the form of a scientific
+workflow.</div>
+</blockquote>
+<aside class="notes">
+<p>So to define ResOps: <strong>BLOCK QUOTE</strong></p>
+</aside>
+</section>
+<section id="indundated-with-choice" class="slide level2">
+<h2>Indundated with Choice?</h2>
+<ul>
+<li class="fragment">Look to the scientific community.</li>
+<li class="fragment">Not a technical problem but a educational
+problem.</li>
+</ul>
+<aside class="notes">
+<p>Indundated with choice? <strong>Look to the scientific
+community.</strong> This might look like a <strong>technical</strong>
+problem but we argue its a educational problem. Community forms a
+convergence on best practices which we tend to adopt, learn and
+implement. Knowledge of these tools is now more important than ever and
+should form the basis for early skill and training development.</p>
+</aside>
+</section>
+<section id="publish-your-code-it-is-good-enough" class="slide level2">
+<h2>Publish your code! It is good enough!</h2>
+<blockquote>
+<div class="line-block">Wants to share a trade secret with scientists:
+Most professional computer software isnt very good. That the code is a
+little raw is one of the main reasons scientists give for not sharing it
+with others. So if your code is good enough to do the job then it is
+good enough to release (Barnes, 2010).</div>
+</blockquote>
+<aside class="notes">
+<p>Publish your code it is good enough To finish with a quote from
+Barnes, 2010, a professional software engineer: “Wants to share a trade
+secret with scientists: Most professional computer software isnt very
+good. That the code is a little raw is one of the main reasons
+scientists give for not sharing it with others. So if your code is good
+enough to do the job then it is good enough to release.”</p>
+</aside>
+</section>
+<section id="send-it-to-the-internet" class="slide level2"
+data-background="figures/hasbrown.jpg">
+<h2 data-background="figures/hasbrown.jpg">Send It To The Internet</h2>
+<aside class="notes">
+<p>Hashbrown Resops</p>
+<p>Thank you for your time (hope you enjoyed the Cobra Kai memes), paper
+on this will be up on preprint soon.</p>
+</aside>
+</section>
+<section id="thank-you" class="slide level2">
+<h2>Thank You!</h2>
+<p><span
+style="color: #808080;"><em><a href="https://twitter.com/aaron_willcox"><span
+class="citation"
+data-cites="aaron_willcox">@aaron_willcox</span></a></em></span>
+<a href="https://twitter.com/aaron_willcox" class="fa fa-twitter"></a></p>
+</section>
+<section id="section" class="slide level2"
+data-background-iframe="ref.html">
+<h2 data-background-iframe="ref.html"></h2>
+</section>
+    </div>
+  </div>
+
+  <script src="SORTEE2022_presentation_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="SORTEE2022_presentation_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'SORTEE2022_presentation_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+<div class='reveal'>
+  <div class='footer'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <p style="text-align: center;">
+    <span style="color: #808080;"><em><a href="https://github.com/psychtek/">@aaron_willcox</a></em></span>
+    <a href="https://twitter.com/aaron_willcox" class="fa fa-twitter"></a>
+    <a href="https://www.linkedin.com/in/aawillcox/" class="fa fa-linkedin"></a>
+    <a href="https://github.com/psychtek/" class="fa fa-github"></a>
+ </p>
+ </div>
+</div>
+
+  </body>
+</html>
