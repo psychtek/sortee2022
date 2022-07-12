@@ -217,13 +217,13 @@ So to define ResOps: **BLOCK QUOTE**
 
 </div>
 
-## Indundated with Choice? 
+## Inundated with Choice? 
 
 > - Look to the scientific community. 
 > - Not a technical problem but a educational problem.
 
 <div class="notes">
-Indundated with choice? 
+Inundated with choice? 
 **Look to the scientific community.** 
 This might look like a **technical** problem but we argue its a educational problem. Community forms a convergence on best practices which we tend to adopt, learn and implement. Knowledge of these tools is now more important than ever and should form the basis for early skill and training development. 
 </div>
@@ -235,7 +235,7 @@ This might look like a **technical** problem but we argue its a educational prob
 <div class="notes">
 Publish your code it is good enough
 To finish with a quote from Barnes, 2010, a professional software engineer: 
-"Wants to share a trade secret with scientists: Most professional computer software isnt very good. That the code is a little raw is one of the main reasons scientists give for not sharing it with others. So if your code is good enough to do the job then it is good enough to release."
+"Wants to share a trade secret with scientists: Most professional computer software isnt very good. That the code is a little raw is one of the main reasons scientists give for not sharing it with others. So if your code is good enough to do the job then, it is good enough to release."
 </div>
 
 ## Send It To The Internet  {data-background="figures/hasbrown.jpg"} 
