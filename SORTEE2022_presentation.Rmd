@@ -117,7 +117,7 @@ The key difference is our roles as researchers are: **developers**, **testing**,
 </div>
 
 
-## FAIR Principles 
+## F.A.I.R Principles 
 
 > - Findable 
 > - Accessible
@@ -135,7 +135,7 @@ Sources of irreproducibility provide some insights into technical solutions of s
 > - Analysis_Report_2022_v001_final_FINAL_Submitted.pdf
 
 <div class="notes">
-A version control system is a way to syncronize and track changes in a project file. This includes what and by whom was changed and then, these are sent to a server so other contributors and collaborators can manage the same files. This essentially is the modern day version of avoiding this: </div>
+A version control system is a way to synchronize and track changes in a project file. This includes what and by whom was changed and then, these are sent to a server so other contributors and collaborators can manage the same files. This essentially is the modern day version of avoiding this: </div>
 
 ## Version Control 
 
@@ -144,7 +144,7 @@ A version control system is a way to syncronize and track changes in a project f
 > - Re-purposed for research
 
 <div class="notes">
-**Git** is the command line and communication protocol to enable the use of a version control system. **Github** is a web based platform that makes it easier to collaborate with git in that it can hold projects in multiple repositories and has additional project managing tools such as issue tracking and tools and, manage roles and comments. What this means for research is that by **repurposing VCS** for science we have the ability to provide a snapshot of contextual changes to files and have a rich data provenance for our scientific workflows. All the information about the origin, context, derivation, roles and histroy of some digital artifact is now recorded provanence.
+**Git** is the command line and communication protocol to enable the use of a version control system. **Github** is a web based platform that makes it easier to collaborate with git in that it can hold projects in multiple repositories and has additional project managing tools such as issue tracking and tools and, manage roles and comments. What this means for research is that by **repurposing VCS** for science we have the ability to provide a snapshot of contextual changes to files and have a rich data provenance for our scientific workflows. All the information about the origin, context, derivation, roles and history of some digital artefact is now recorded provenance.
 </div>
 
 ## Continuous Practices
@@ -210,7 +210,7 @@ The components alone will address in part, issues of irreproducibility but the *
 
 ## ResOps
 
-> |  ResOps is an attempt to distinguish scientific software from DevOps. Emphasising communities of practice that enable the convergence of tools implemented in the scientific community, to enable computational reproducibility in the form of a scientific workflow. 
+> |  ResOps is an attempt to distinguish scientific software from DevOps. Emphasising communities of practice that, enable the convergence of tools implemented in the scientific community, to enable computational reproducibility in the form of a scientific workflow. 
 
 <div class="notes">
 So to define ResOps: **BLOCK QUOTE**
